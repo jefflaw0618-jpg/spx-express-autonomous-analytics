@@ -1,0 +1,111 @@
+{
+  "results": [
+    {
+      "Model": "Naive Baseline (Mean)",
+      "RMSE": 9.47,
+      "MAE": 7.64,
+      "R2_Score": -0.0001
+    },
+    {
+      "Model": "Linear Regression",
+      "RMSE": 8.09,
+      "MAE": 6.39,
+      "R2_Score": 0.2696
+    },
+    {
+      "Model": "Decision Tree",
+      "RMSE": 7.56,
+      "MAE": 5.94,
+      "R2_Score": 0.3615
+    },
+    {
+      "Model": "Random Forest",
+      "RMSE": 8.36,
+      "MAE": 6.52,
+      "R2_Score": 0.22
+    },
+    {
+      "Model": "Gradient Boosting",
+      "RMSE": 7.4,
+      "MAE": 5.81,
+      "R2_Score": 0.3883
+    },
+    {
+      "Model": "XGBoost",
+      "RMSE": 7.4,
+      "MAE": 5.81,
+      "R2_Score": 0.3893
+    }
+  ],
+  "best_model": "XGBoost",
+  "feature_importances": {
+    "Decision Tree": {
+      "Delivery_person_Ratings": 0.4848,
+      "Distance_km": 0.3091,
+      "Delivery_person_Age": 0.2061
+    },
+    "Random Forest": {
+      "Delivery_person_Ratings": 0.3438,
+      "Distance_km": 0.4144,
+      "Delivery_person_Age": 0.2418
+    },
+    "Gradient Boosting": {
+      "Delivery_person_Ratings": 0.4902,
+      "Distance_km": 0.2951,
+      "Delivery_person_Age": 0.2147
+    },
+    "XGBoost": {
+      "Delivery_person_Ratings": 0.5785,
+      "Distance_km": 0.2056,
+      "Delivery_person_Age": 0.2159
+    }
+  },
+  "parsimony": [
+    {
+      "num_features": 1,
+      "added_feature": "Delivery_person_Ratings",
+      "r2": 0.19309216737747192,
+      "rmse": 8.503534816187747
+    },
+    {
+      "num_features": 2,
+      "added_feature": "Distance_km",
+      "r2": 0.3055272102355957,
+      "rmse": 7.888876420967864
+    },
+    {
+      "num_features": 3,
+      "added_feature": "Delivery_person_Age",
+      "r2": 0.38930684328079224,
+      "rmse": 7.397739848805544
+    },
+    {
+      "num_features": 4,
+      "added_feature": "Type_of_vehicle",
+      "r2": 0.41541367769241333,
+      "rmse": 7.237887821117704
+    },
+    {
+      "num_features": 5,
+      "added_feature": "City_Code",
+      "r2": 0.41446518898010254,
+      "rmse": 7.243757256807868
+    },
+    {
+      "num_features": 6,
+      "added_feature": "Type_of_order",
+      "r2": 0.4135030508041382,
+      "rmse": 7.249706130813462
+    }
+  ],
+  "parsimonious_features": [
+    "Delivery_person_Ratings",
+    "Distance_km",
+    "Delivery_person_Age"
+  ],
+  "dropped_features": [
+    "Type_of_order",
+    "Type_of_vehicle",
+    "City_Code"
+  ]
+}

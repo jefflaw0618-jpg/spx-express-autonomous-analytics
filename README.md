@@ -1,70 +1,45 @@
 # 📦 SPX Express - Autonomous Analytics & Prediction Project
 
-This project was built as part of the preparation and portfolio development for the **Data Analytics Intern - SPX Express** role. It demonstrates end-to-end data generation, predictive modeling, and the deployment of an autonomous dashboard to track and predict delivery operations across Malaysia.
+This project was built as part of the portfolio development for the **Data Analytics Intern - SPX Express** role. It demonstrates end-to-end data engineering, statistical hypothesis testing, predictive machine learning, and the deployment of a highly stylized autonomous dashboard.
 
 ## 🚀 Project Overview
 
-The core objective of this project is to identify operational gaps in delivery operations and provide data-driven tools to mitigate delays.
+The core objective of this project is to identify operational gaps in last-mile delivery operations and provide data-driven AI tools to mitigate delays.
 
-1. **Synthetic Data Generation (`data/generate_data.py`):**
-   Generates a highly realistic synthetic logistics dataset simulating 10,000 delivery orders across major Malaysian Hubs (Kuala Lumpur, Penang, Johor Bahru, etc.). Features include distance, weather, traffic conditions, driver rating, and vehicle type.
+1. **Data Engineering & Regex Parsing:**
+   Processed a real-world dataset of 45,000+ delivery records. Engineered geographic distances using the **Haversine Formula** (calculating exact kilometers between restaurant and delivery GPS coordinates). Used **Regex** to parse complex strings like `PUNERES20DEL01` into discrete components (`City_Code`, `Restaurant_No`, `Delivery_Sequence`).
 
-2. **Autonomous Delivery Prediction Model (`modeling/train_model.py`):**
-   An AI-based predictive modeling pipeline using `scikit-learn` (Random Forest) to predict:
-   - **Delivery Duration (Regression)**: How long will a delivery take based on live conditions?
-   - **Delivery Status (Classification)**: Will the delivery be On-Time or Delayed?
+2. **Statistical Rigor & Hypothesis Testing:**
+   Conducted rigorous A/B and hypothesis testing to validate operational assumptions. Specifically utilized **Spearman Rank Correlation** for monotonic relationships involving ordinal data (e.g., Driver Rating vs Delivery Time), demonstrating advanced understanding of non-parametric statistics.
 
-3. **Autonomous Dashboard (`dashboard/app.py`):**
-   An interactive web application built with Streamlit and Plotly. It monitors operational performance, tracks delay rates, and allows dispatchers to input parameters (like weather and traffic) to predict expected delivery times autonomously.
+3. **Predictive Modeling & Principle of Parsimony:**
+   Trained 6 separate machine learning models (Linear Regression, Decision Tree, Random Forest, Gradient Boosting, XGBoost). 
+   - Implemented an automated **Forward Selection algorithm** based on the **Principle of Parsimony (Occam's Razor)**.
+   - Mathematically proved that 3 variables (`City_Code`, `Type_of_order`, `Type_of_vehicle`) contributed `< 0.01` to the $R^2$ score.
+   - Dropped the noisy variables to deploy a significantly lighter, faster XGBoost model relying exclusively on the 3 most critical features: **Distance**, **Driver Rating**, and **Driver Age**.
 
-## 🛠️ Tech Stack
-- **Language**: Python 3
-- **Data Manipulation**: Pandas, NumPy
-- **Machine Learning**: Scikit-Learn, Joblib
-- **Visualization & Dashboard**: Streamlit, Plotly
+4. **Autonomous Cyberpunk Dashboard:**
+   An interactive web application built with Streamlit and Plotly. It features a completely custom, sleek "Dark Neon / Cyberpunk" UI theme using pure CSS and injected Plotly configurations. It includes a raw data viewer, hypothesis test results, model evaluation metrics, and a live AI prediction form.
 
-## 📂 Project Structure
-```
-spx_analytics_project/
-│
-├── data/
-│   ├── generate_data.py          # Script to generate synthetic dataset
-│   └── spx_delivery_data.csv     # Generated dataset (10,000 rows)
-│
-├── modeling/
-│   ├── train_model.py            # Model training & evaluation script
-│   ├── delivery_time_regressor.pkl # Saved Regression Model
-│   ├── delivery_status_classifier.pkl # Saved Classification Model
-│   └── label_encoders.pkl        # Saved Encoders for Inference
-│
-├── dashboard/
-│   └── app.py                    # Streamlit Dashboard App
-│
-└── README.md                     # Project Documentation
-```
+## 💻 Tech Stack
 
-## 💻 How to Run
+- **Data Processing:** `pandas`, `numpy`, `regex`
+- **Machine Learning:** `scikit-learn`, `xgboost`, `joblib`
+- **Statistics:** `scipy.stats`
+- **Frontend / UI:** `streamlit`, `streamlit-option-menu`, `plotly.express`, `plotly.graph_objects`
 
-1. **Install Dependencies:**
+## 📊 How to Run
+
+1. **Install Requirements:**
    ```bash
-   pip install pandas numpy scikit-learn joblib streamlit plotly
+   pip install pandas numpy scikit-learn xgboost streamlit plotly streamlit-option-menu scipy joblib
+   ```
+2. **Launch the Dashboard:**
+   ```bash
+   python -m streamlit run dashboard/real_app.py
    ```
 
-2. **Generate the Data (Optional):**
-   ```bash
-   python data/generate_data.py
-   ```
+## 🏆 Key Analytical Findings
 
-3. **Train the Models:**
-   ```bash
-   python modeling/train_model.py
-   ```
-
-4. **Launch the Dashboard:**
-   ```bash
-   streamlit run dashboard/app.py
-   ```
-
-## 📈 Key Insights & Operational Value
-- By predicting delays proactively, hub managers can reroute packages or allocate different vehicle types (e.g., Truck vs Van) depending on weather and traffic bottlenecks.
-- The dashboard highlights hub-specific performance, allowing senior management to identify which hubs require resource optimization.
+1. **Reverse Causality in Driver Ratings:** Initial assumptions suggested higher-rated drivers take longer (due to carefulness). Statistical analysis proved reverse causality—faster delivery times result in higher ratings from customers.
+2. **Vehicle Type Irrelevance:** Despite logical assumptions, the type of vehicle (Motorcycle vs Scooter) had virtually zero impact on delivery times in the final machine learning model, allowing for a simpler, more computationally efficient deployment.
